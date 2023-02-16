@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UtilityController;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/hello_world', fn () => view('hello_world', [
+    'name' => 'Mantare Otto',
+    'age' => 78,
+]));
+
+Route::get('/', fn () => view('index'));
+Route::get('/curriculum', fn () => view('curriculum'));
+
+// 世界の時間
+Route::get('/world-time', [UtilityController::class, 'worldTime']);
+
+// おみくじ
+Route::get('/omikuji', [GameController::class, 'omikuji']);
+
+// モンティ・ホール問題
+Route::get('/monty-hall', [GameController::class, 'montyHall']);
